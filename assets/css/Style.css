@@ -1,0 +1,115 @@
+.populares {
+    position: relative;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 3px 10px;
+    cursor: pointer;
+    color: gray;
+    margin-left: 5px;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: 500;
+    line-height: 1.42857;
+    vertical-align: middle;
+    margin-top: 10px;
+}
+.supercategoria {
+    font-size: 130%;
+}
+a {
+    color: black;
+}
+a:hover {
+    color: darkorange;
+}
+
+.content {
+    margin-top: 10px; 
+}
+
+.panel-default {
+    border-color: #ddd;
+    margin-right: 47px;
+}
+#login {
+    padding-top: 50px;
+    
+}
+#login .form-wrap {
+   width: 40%;
+   margin: 28px auto;
+   border: 2px solid #D8D4D0;
+   border-radius: 81px;
+}
+#login h1 {
+    color: #1fa67b;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+    
+}
+#login .form-group {
+    margin-bottom: -15px;
+    padding: 20px;
+}
+#login .checkbox {
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+}
+#login .checkbox.show:before {
+    content: '\e013';
+    padding: 20px;
+    color: #1fa67b;
+    font-size: 17px;
+    margin: 1px 0 0 3px;
+    position: absolute;
+    pointer-events: none;
+    font-family: 'Glyphicons Halflings';
+}
+#login .checkbox .character-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#login .checkbox .label {
+    color: #6d6d6d;
+    font-size: 13px;
+    font-weight: normal;
+}
+#login .btn.btn-custom {
+    font-size: 14px;
+    margin-bottom: 5px;
+    width: 74%;
+    margin: auto;
+}
+
+#login .forget {
+        font-size: 13px;
+	text-align: center;
+	display: block;
+           padding: 20px;
+}
+.form-control {
+    color: #212121;
+}
+.btn-custom {
+    color: #fff;
+    background-color: #FE7F08;
+       padding: 20px;
+}
+.btn-custom:hover,
+.btn-custom:focus {
+    color: #fff;
+}
+
