@@ -33,7 +33,7 @@ $(document).ready( function() {
     });
     $("#reporte_pdf").click(function() {
         $('ttbody').empty();
-        $.get('../reportes/reportes.php', function(resp) {
+        $.get('../reportes/Reportes.php', function(resp) {
             $('ttbody').append(resp);
         }, 'html');
     });

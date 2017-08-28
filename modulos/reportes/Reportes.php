@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-
-<body style="width: 29px;">
 <div class="container">
     <?php include '../../bin/head.php';?>
     <h2>Panel Heading</h2>
@@ -30,4 +27,3 @@
         </div>
     </div>
 </div>
-</body>

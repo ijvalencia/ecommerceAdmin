@@ -17,7 +17,7 @@
     font-size: 130%;
 }
 a {
-    color: #666;
+    color: black;
 }
 a:hover {
     color: darkorange;
@@ -112,4 +112,9 @@ a:hover {
 .btn-custom:focus {
     color: #fff;
 }
-
+.td-fixed {
+    width: 520px;
+}
+.modal-dialog {
+    width: 20%;
+}

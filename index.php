@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
       <meta charset="UTF-8">
       <title></title>        
-         <?php include '../../bin/head.php';?>
+         <?php include 'bin/head.php';?>
     </head>
 <body style="background:#f2f2f2">
   <section id="login">

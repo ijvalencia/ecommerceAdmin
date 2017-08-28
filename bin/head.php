@@ -1,6 +1,6 @@
 <!DOCTYPE html>
     <head>
-        <link href="../../assets/css/Style.css" rel="stylesheet">
+        <link href="../../assets/css/style.css" rel="stylesheet">
         <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
      <!-- no borrar lebreria de reporte-->
         <script type="text/javascript" src="../../assets/js/jquery.min.js"></script>

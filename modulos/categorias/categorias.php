@@ -35,19 +35,20 @@
             </div>
             <!-- Modal -->
             <div id="modal_categorias" class="modal fade" role="dialog">
+                <span id="accion_modal" class="hidden"></span>
                 <div class="modal-dialog">
-
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
+                            <h5 class="modal-title"></h5>
                         </div>
                         <div class="modal-body">
-                            <p>Some text in the modal.</p>
+                            <select id="select_modal_category"></select>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button id="btn_modal_aceptar" type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
                 </div>
