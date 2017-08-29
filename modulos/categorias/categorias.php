@@ -44,7 +44,9 @@
                             <h5 class="modal-title"></h5>
                         </div>
                         <div class="modal-body">
-                            <select id="select_modal_category"></select>
+                            <span id="txt_borrar_categoria"></span>
+                            <span id="txt_copiar_mover"></span>
+                            <center><select id="select_modal_category"></select></center>
                         </div>
                         <div class="modal-footer">
                             <button id="btn_modal_aceptar" type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
