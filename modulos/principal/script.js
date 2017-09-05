@@ -8,7 +8,7 @@ $(document).ready( function() {
     });
     $("#usuario").click(function() {
         $('ttbody').empty();
-        $.get('../user.php', function(resp) { 
+        $.get('../usuario/usuario.php', function(resp) {
             $('ttbody').append(resp);
         }, 'html');
     });

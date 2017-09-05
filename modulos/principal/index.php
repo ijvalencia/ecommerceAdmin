@@ -26,7 +26,7 @@
                         </li>
                         <li id="usuario">
                             <a>
-                                <p>Usuarios</p>
+                                <p>Clientes</p>
                             </a>
                         </li>
                         <li id="categorias">

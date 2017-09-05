@@ -4,23 +4,24 @@ var row = '<tr id="#nombre"><td class="td-fixed">#nombre</td><td>#estado</td><td
 var objeto;
 var accion;
 var tabla_relacion_categorias = [];
+var supercategoria = [];
 
-$.getJSON("../../../Ecommerce/bin/ingresar.php?categoria=getCategorias", 
-    function(resp) {
-        $.each(resp, function(i, categoria) {
-            var aux = recuadro.replace("#n", categoria.id_super).replace("#categoria", categoria.nombre).replace("#desc", categoria.descripcion);
-            $("#lista_supercategorias").append(aux);
-        });
-        $('.supercategoria').click(clickSupercategoria);
-        getTablaRelacion();
-    }
-);
+$.getJSON("../../../Ecommerce/bin/ingresar.php?categoria=getCategorias", function(resp) {
+    supercategoria = resp;
+//    console.log(supercategoria);
+    $.each(resp, function(i, categoria) {
+        var aux = recuadro.replace("#n", categoria.id_super).replace("#categoria", categoria.nombre).replace("#desc", categoria.descripcion);
+        $("#lista_supercategorias").append(aux);
+    });
+    $('.supercategoria').click(clickSupercategoria);
+    getTablaRelacion();
+});
 
 
 function getTablaRelacion() {
     $.getJSON("../../../Ecommerce/bin/ingresar.php?categoria=getSubcategorias&subcategoria=666", function(resp) {
         tabla_relacion_categorias = resp;
-        console.log(tabla_relacion_categorias);
+//        console.log(tabla_relacion_categorias);
     });
 }
 
@@ -37,9 +38,11 @@ function clickSupercategoria() {
     // console.log(url);
     $.getJSON(url, function(resp) {
         $('tbody').empty();
+        resp.sort(function(a, b) {return ((a.nombre < b.nombre) ? -1 : ((a.nombre > b.nombre) ? 1 : 0));});
         $.each(resp, function(i, categoria) {
             var aux = row.replace(/#nombre/g, valor == "Todas" ? categoria.nombre : categoria.id_categoria);
             aux = aux.replace(/#estado/g, valor == "Todas" ? (categoria.estado == "1" ? "Activa" : "Inactiva") : "");
+            aux = aux.replace("fa-trash", categoria.estado == "1" ? "fa-trash" : "fa-reply");
             $('tbody').append(aux);
         });
         $('.fa').attr("data-toggle", "modal").attr("data-target", "#modal_categorias").click(clickIcono);
@@ -53,14 +56,25 @@ function clickIcono() {
     accion = accion.indexOf("plus") != -1 ? "copiar" : (accion.indexOf("folder") != -1 ? "mover" : "borrar");
     $('#accion_modal').text(accion);
     $('#select_modal_category').empty();
+    var excluir = [];
     for (var i = 0; i < tabla_relacion_categorias.length; i++) {
         var fila = tabla_relacion_categorias[i];
-        if(fila.id_categoria != objeto.attr("id") && fila.id_supercategoria != $('#titulo_subcat').text())
-            if (i == 0 || fila.id_supercategoria != tabla_relacion_categorias[i-1].id_supercategoria)
-                $('#select_modal_category').append('<option value="'+fila.id_supercategoria+'">'+fila.id_supercategoria+'</option>');
+        if (fila.id_categoria == objeto.attr("id") && fila.id_supercategoria != $('#titulo_subcat').text())
+               excluir.push(fila.id_supercategoria);
     }
+    var aux_cat = supercategoria;
+    for (var i = 0; i < excluir.length; i++) {
+        for (var j = 0; j < aux_cat.length; j++)
+            if (aux_cat[j].nombre == excluir[i]) {
+                aux_cat.splice(j, 1);
+                break;
+            }
+    }
+    $.each(aux_cat, function(i, cat) {
+        $('#select_modal_category').append('<option value="'+cat.nombre+'">'+cat.nombre+'</option>');
+    });
     $('#txt_copiar_mover').text("A que categoria deseas "+accion+" "+objeto.attr("id"));
-    $('#txt_borrar_categoria').empty().append($('#titulo_subcat').text() == "Todas" ? 'Seguro que desea desactivar '+objeto.attr("id") : 'Seguro desea borrar '+objeto.attr("id")+' de '+$('#titulo_subcat').text());
+    $('#txt_borrar_categoria').empty().append($('#titulo_subcat').text() == "Todas" ? 'Seguro que desea desactivar/activar '+objeto.attr("id") : 'Seguro desea borrar '+objeto.attr("id")+' de '+$('#titulo_subcat').text());
     // objeto.empty();
 }
 
@@ -85,5 +99,26 @@ $('#modal_categorias').on("show.bs.modal", function() {
 });
 
 $('#btn_modal_aceptar').click(function() {
-    alert(accion +" "+ objeto.attr("id")+" a "+$('#select_modal_category').val());
+    switch(accion) {
+        case "copiar":
+            break;
+        case "mover":
+            break;
+        case "borrar":
+            $.ajax({
+                url: "../../bin/selector.php",
+                type: "GET",
+                data: {"opcion":"estadoCategoria", "categoria":objeto.attr("id")},
+                success: function(resp) {
+                    var aux = objeto.children();
+                    $(aux[1]).text($(aux[1]).text().indexOf("In") == -1 ? "Inactiva" : "Activa");
+                    var aux_fa = $($(aux[4]).children());
+                    aux_fa.attr("class", aux_fa.attr("class").indexOf("trash")== -1 ? "fa fa-trash" : "fa fa-reply");
+                }
+            });
+            break;
+        default:
+            alert(accion +" "+ objeto.attr("id")+" a "+$('#select_modal_category').val());
+            break;
+    }
 });
