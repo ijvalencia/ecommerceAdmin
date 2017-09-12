@@ -35,6 +35,21 @@ class BD {
         $sql = "UPDATE categoria SET estado = IF(estado = 1, 0, 1) WHERE nombre = '".$categoria."'";
         echo $this->conexion->query($sql) ? 1 : 0;
     }
+
+    function borrar_relacion($categoria, $supercategoria) {
+        $sql = "DELETE FROM relacion_categorias WHERE id_categoria = '".$categoria."' AND id_supercategoria = '".$supercategoria."'";
+        echo $this->conexion->query($sql) ? 1 : 0;
+    }
+
+    function copiar_categoria($categoria, $supercategoria) {
+        $sql = "INSERT INTO relacion_categorias (id_categoria, id_supercategoria) VALUES ('".$categoria."', '".$supercategoria."')";
+        echo $this->conexion->query($sql) ? 1 : 0;
+    }
+
+    function mover_categoria($origen, $destino, $categoria) {
+        $sql = "UPDATE relacion_categorias SET id_supercategoria = '".$destino."' WHERE id_categoria = '".$categoria."' AND id_supercategoria = '".$origen."'";
+        echo $this->conexion->query($sql) ? 1 : 0;
+    }
 }
 
 ?>

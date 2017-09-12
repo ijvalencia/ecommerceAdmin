@@ -42,7 +42,7 @@ function clickSupercategoria() {
         $.each(resp, function(i, categoria) {
             var aux = row.replace(/#nombre/g, valor == "Todas" ? categoria.nombre : categoria.id_categoria);
             aux = aux.replace(/#estado/g, valor == "Todas" ? (categoria.estado == "1" ? "Activa" : "Inactiva") : "");
-            aux = aux.replace("fa-trash", categoria.estado == "1" ? "fa-trash" : "fa-reply");
+            aux = aux.replace("fa-trash", $('#titulo_subcat').text() == "Todas" ? (categoria.estado == "1" ? "fa-trash" : "fa-reply") : "fa-trash");
             $('tbody').append(aux);
         });
         $('.fa').attr("data-toggle", "modal").attr("data-target", "#modal_categorias").click(clickIcono);
@@ -59,9 +59,11 @@ function clickIcono() {
     var excluir = [];
     for (var i = 0; i < tabla_relacion_categorias.length; i++) {
         var fila = tabla_relacion_categorias[i];
-        if (fila.id_categoria == objeto.attr("id") && fila.id_supercategoria != $('#titulo_subcat').text())
-               excluir.push(fila.id_supercategoria);
+        if (fila.id_categoria == objeto.attr("id")) {
+                excluir.push(fila.id_supercategoria);
+        }
     }
+//    console.log(excluir);
     var aux_cat = supercategoria;
     for (var i = 0; i < excluir.length; i++) {
         for (var j = 0; j < aux_cat.length; j++)
@@ -99,26 +101,79 @@ $('#modal_categorias').on("show.bs.modal", function() {
 });
 
 $('#btn_modal_aceptar').click(function() {
+    var supercategoria_select = $('#select_modal_category').val();
+    var categoria_menu = objeto.attr("id");
     switch(accion) {
         case "copiar":
-            break;
-        case "mover":
-            break;
-        case "borrar":
             $.ajax({
                 url: "../../bin/selector.php",
                 type: "GET",
-                data: {"opcion":"estadoCategoria", "categoria":objeto.attr("id")},
+                data: {"opcion":"copiarCategoria", "categoria":categoria_menu, "supercategoria":supercategoria_select},
                 success: function(resp) {
-                    var aux = objeto.children();
-                    $(aux[1]).text($(aux[1]).text().indexOf("In") == -1 ? "Inactiva" : "Activa");
-                    var aux_fa = $($(aux[4]).children());
-                    aux_fa.attr("class", aux_fa.attr("class").indexOf("trash")== -1 ? "fa fa-trash" : "fa fa-reply");
+                    alert("Copiada "+categoria_menu+" a "+supercategoria_select);
                 }
             });
             break;
+        case "mover":
+            if($('#titulo_subcat').text() == "Todas") {
+                $.ajax({
+                    url: "../../bin/selector.php",
+                    type: "GET",
+                    data: {"opcion":"copiarCategoria", "categoria":categoria_menu, "supercategoria":supercategoria_select},
+                    success: function(resp) {
+                        alert("Movida "+categoria_menu+" a "+supercategoria_select);
+                    }
+                });
+            } else {
+                var txt_super = $('#titulo_subcat').text();
+                $.ajax({
+                    url: "../../bin/selector.php",
+                    type: "GET",
+                    data: {"opcion":"moverCategoria", "categoria":categoria_menu, "destino":supercategoria_select, "origen":txt_super},
+                    success: function(resp) {
+                        alert("Movida "+categoria_menu+" de "+$('#titulo_subcat').text()+" a "+supercategoria_select);
+                        $.each($('.supercategoria'), function(i, btn_super) {
+                            if(btn_super.text == txt_super) {
+                                btn_super.click();
+                                return;
+                            }
+                        });
+                    }
+                });
+            }
+            break;
+        case "borrar":
+            if ($('#titulo_subcat').text() == "Todas") {
+                $.ajax({
+                    url: "../../bin/selector.php",
+                    type: "GET",
+                    data: {"opcion":"estadoCategoria", "categoria":categoria_menu},
+                    success: function(resp) {
+                        var aux = objeto.children();
+                        $(aux[1]).text($(aux[1]).text().indexOf("In") == -1 ? "Inactiva" : "Activa");
+                        var aux_fa = $($(aux[4]).children());
+                        aux_fa.attr("class", aux_fa.attr("class").indexOf("trash")== -1 ? "fa fa-trash" : "fa fa-reply");
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: "../../bin/selector.php",
+                    type: "GET",
+                    data: {"opcion":"borrarRelacionCategoria", "categoria":objeto.attr("id"), "supercategoria":$('#titulo_subcat').text()},
+                    success: function(resp) {
+                        var txt_super = $('#titulo_subcat').text();
+                        $.each($('.supercategoria'), function(i, btn_super) {
+                            if(btn_super.text == txt_super) {
+                                btn_super.click();
+                                return;
+                            }
+                        });
+                    }
+                });
+            }
+            break;
         default:
-            alert(accion +" "+ objeto.attr("id")+" a "+$('#select_modal_category').val());
+            alert(accion+" "+categoria_menu+" a "+supercategoria_select);
             break;
     }
 });
