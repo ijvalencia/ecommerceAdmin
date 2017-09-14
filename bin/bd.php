@@ -50,6 +50,30 @@ class BD {
         $sql = "UPDATE relacion_categorias SET id_supercategoria = '".$destino."' WHERE id_categoria = '".$categoria."' AND id_supercategoria = '".$origen."'";
         echo $this->conexion->query($sql) ? 1 : 0;
     }
+
+    function buscar_usuario($palabras) {
+        $resultados = [];
+        foreach($palabras as $str) {
+           $aux = true;
+           $sql = "SELECT id_usuario, nombre, apellidos, correo FROM usuario WHERE nombre LIKE '%".$str."%' OR apellidos LIKE '%".$str."%' OR correo LIKE '%".$str."%'";
+            foreach($this->conexion->query($sql) as $row) {
+                for($i = 0; $i < sizeof($resultados) && sizeof($resultados) > 0; $i++)
+                    if($resultados[$i]["id_usuario"] == $row["id_usuario"]) {
+                        $aux = false;
+                        break;
+                    }
+                if ($aux)
+                    array_push($resultados, $row);
+            }
+        }
+        echo json_encode(sizeof($resultados) >= 1 ? $resultados : "{}");
+    }
+
+    function getUsuario($id) {
+        $sql = "SELECT * FROM usuario WHERE id_usuario = "+$id;
+        foreach($this->conexion->query($sql) as $row)
+            echo json_encode($row);
+    }
 }
 
 ?>

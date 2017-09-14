@@ -125,4 +125,18 @@ a:hover {
     display: block;
     text-align: center;
 }
-
+.search-bar {
+    position: relative;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 20px;
+}
+.search-bar .btn-search {
+    position: absolute;
+    margin: -40px 91%;
+    border-radius: 5px;
+    background-color: white;
+}
+.modal-xl {
+    width: 60%;
+}

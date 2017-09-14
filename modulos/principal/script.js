@@ -10,6 +10,13 @@ $(document).ready( function() {
         $('ttbody').empty();
         $.get('../usuario/usuario.php', function(resp) {
             $('ttbody').append(resp);
+            $.ajax({
+                url: "../usuario/usuario.js",
+                dataType: "script",
+                success: function() {
+                    console.log("Cargado");
+                }
+            });
         }, 'html');
     });
     $("#categorias").click(function() {

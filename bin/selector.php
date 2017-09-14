@@ -18,6 +18,9 @@ switch ($opc) {
     case "moverCategoria":
         $conexion->mover_categoria($_GET['origen'], $_GET['destino'], $_GET['categoria']);
         break;
+    case "buscarUsuario":
+        $conexion->buscar_usuario($_GET['palabras']);
+        break;
 }
 
 ?>
