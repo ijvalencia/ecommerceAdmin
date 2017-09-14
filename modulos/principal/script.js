@@ -1,11 +1,5 @@
 
 $(document).ready( function() {
-    $("#dashboard").click(function() {
-        $('ttbody').empty();
-        $.get('../dashboard/dashboard.php', function(resp) { 
-            $('ttbody').append(resp);
-        }, 'html');
-    });
     $("#usuario").click(function() {
         $('ttbody').empty();
         $.get('../usuario/usuario.php', function(resp) {
@@ -13,9 +7,7 @@ $(document).ready( function() {
             $.ajax({
                 url: "../usuario/usuario.js",
                 dataType: "script",
-                success: function() {
-                    console.log("Cargado");
-                }
+                success: function() {}
             });
         }, 'html');
     });
@@ -26,15 +18,24 @@ $(document).ready( function() {
             $.ajax({
                 url: "../categorias/categorias.js", 
                 dataType: "script",
-                success: function() {
-                    console.log("Cargado");
-                }
+                success: function() {}
             });
         }, 'html');
     });
-    $("#prueba").click(function() {
+    $("#almacen").click(function() {
         $('ttbody').empty();
-        $.get('../table.php', function(resp) { 
+        $.get('../almacen/almacen.php', function(resp) {
+            $('ttbody').append(resp);
+            $.ajax({
+                url: "../almacen/almacen.js",
+                dataType: "script",
+                success: function() {}
+            });
+        }, 'html');
+    });
+    $("#dashboard").click(function() {
+        $('ttbody').empty();
+        $.get('../dashboard/dashboard.php', function(resp) {
             $('ttbody').append(resp);
         }, 'html');
     });

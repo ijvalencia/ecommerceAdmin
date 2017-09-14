@@ -19,11 +19,6 @@
                 <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
                 <div class="sidebar-wrapper">
                     <ul class="nav">
-                        <li id="dashboard">
-                            <a>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
                         <li id="usuario">
                             <a>
                                 <p>Clientes</p>
@@ -34,9 +29,14 @@
                                 <p>Categorias</p>
                             </a>
                         </li>
-                        <li id="prueba">
+                        <li id="almacen">
                             <a>
-                                <p>Prueba</p>
+                                <p>Almacen</p>
+                            </a>
+                        </li>
+                        <li id="dashboard">
+                            <a>
+                                <p>Dashboard</p>
                             </a>
                         </li>
                         <li id="reporte_pdf">

@@ -1,3 +1,6 @@
+.navbar {
+    display: block;
+}
 .populares {
     position: relative;
     border: 2px solid gray;
@@ -130,6 +133,7 @@ a:hover {
     width: 80%;
     margin-left: 10%;
     margin-bottom: 20px;
+/*    margin-top: 5%;*/
 }
 .search-bar .btn-search {
     position: absolute;
@@ -139,4 +143,11 @@ a:hover {
 }
 .modal-xl {
     width: 60%;
+}
+.btn-display-style {
+    font-size: 18px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    padding: 0px 5px;
 }
