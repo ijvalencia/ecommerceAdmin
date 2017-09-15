@@ -11,6 +11,18 @@
                         <a class="populares supercategoria" id_super="666" descripcion="Aqui se muestran todas las subcategorias existentes, algunas pueden no estar relacionadas con ninguna categoria">Todas</a>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Solicitar categoria</h4>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <div class="container-fluid">
+                            <input type="text" class="form-control" placeholder="Nombre de la categoria*" maxlength="40" style="margin-bottom:10px;">
+                            <input type="text" class="form-control" placeholder="Descripcion de la categoria" maxlength="200" style="margin-bottom:10px;">
+                            <center><a class="btn btn-default">Enviar petición</a></center>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-8">
                 <div class="card">

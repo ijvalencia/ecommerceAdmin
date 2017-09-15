@@ -1,6 +1,5 @@
-.navbar {
-    display: block;
-}
+.navbar { display: block;}
+
 .populares {
     position: relative;
     border: 2px solid gray;
@@ -16,24 +15,22 @@
     vertical-align: middle;
     margin-top: 10px;
 }
+
 .supercategoria {
     font-size: 130%;
 }
-a {
-    color: black;
-}
-a:hover {
-    color: darkorange;
-}
 
-.content {
-    margin-top: 10px; 
-}
+a { color: black;}
+
+a:hover { color: darkorange;}
+
+.content { margin-top: 10px;}
 
 .panel-default {
     border-color: #ddd;
     margin-right: 47px;
 }
+
 #login {
     padding-top: 50px;
     
@@ -103,31 +100,31 @@ a:hover {
 	display: block;
            padding: 20px;
 }
-.form-control {
-    color: #212121;
-}
+
+.form-control { color: #212121;}
+
 .btn-custom {
     color: #fff;
     background-color: #FE7F08;
        padding: 20px;
 }
+
 .btn-custom:hover,
 .btn-custom:focus {
     color: #fff;
 }
-.td-fixed {
-    width: 520px;
-}
-.modal-dialog {
-    width: 25%;
-}
-#select_modal_category {
-    margin-top: 10px;
-}
+
+.td-fixed { width: 520px;}
+
+.modal-dialog { width: 25%;}
+
+#select_modal_category {margin-top: 10px;}
+
 .modal-body span {
     display: block;
     text-align: center;
 }
+
 .search-bar {
     position: relative;
     width: 80%;
@@ -135,19 +132,33 @@ a:hover {
     margin-bottom: 20px;
 /*    margin-top: 5%;*/
 }
+
+.search-bar { margin-left: 5%;}
+
 .search-bar .btn-search {
+    width: 32px;
+    height: 32px;
     position: absolute;
-    margin: -40px 91%;
+    margin: -36px 90%;
     border-radius: 5px;
     background-color: white;
+    padding: 0 0;
 }
-.modal-xl {
-    width: 60%;
-}
+
+.modal-xl { width: 60%;}
+
 .btn-display-style {
+    margin: 5px 0px;
     font-size: 18px;
     text-align: center;
     overflow: hidden;
     position: relative;
     padding: 0px 5px;
+    border: 0px;
+    color: #333;
+}
+
+.btn-pressed {
+    background-color: darkorange;
+    color: white;
 }
