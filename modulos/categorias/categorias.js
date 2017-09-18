@@ -10,7 +10,7 @@ $.getJSON("../../../Ecommerce/bin/ingresar.php?categoria=getCategorias", functio
     supercategoria = resp;
 //    console.log(supercategoria);
     $.each(resp, function(i, categoria) {
-        var aux = recuadro.replace("#n", categoria.id_super).replace("#categoria", categoria.nombre.substr(0,20)).replace("#desc", categoria.descripcion);
+        var aux = recuadro.replace("#n", categoria.id_super).replace("#categoria", categoria.nombre).replace("#desc", categoria.descripcion);
         $("#lista_supercategorias").append(aux);
     });
     $('.supercategoria').click(clickSupercategoria);
