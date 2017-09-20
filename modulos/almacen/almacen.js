@@ -64,10 +64,28 @@ function getId(codigo) {
 $('#datos_producto').on("show.bs.modal", function() {
     $.each(resultados, function(i, producto) {
         if(producto.codigo_fabricante == codigo) {
-            console.log("SI");
-            $('.modal-title').text(codigo);
+            $('#titulo_producto').text(codigo);
             $('.modal-description').text(producto.descripcion);
             return;
         }
     });
 });
+
+$('#borrar_imagen').click(function() {
+    $.each(resultados, function(i, producto) {
+        if(producto.codigo_fabricante == codigo) {
+            console.log(producto);
+        }
+    });
+});
+
+$('#excluir_producto').click(function() {
+    /* mandar peticion para excluir */
+    console.log(codigo);
+});
+
+$('#btn_confirmar').click(function() {
+    /* mandar imagen al servidor */
+    console.log(codigo);
+});
+
